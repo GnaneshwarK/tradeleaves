@@ -1,0 +1,144 @@
+
+<div class="row">
+    <div class="header" >
+        Showing All Products
+    </div>
+
+  <div class="left-column" >
+    <h2></h2>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <a id="close" class="close">&times;</a>
+      
+
+
+       <div >
+            <form [formGroup]="productForm" (ngSubmit)="save()" class="form-container" >
+                  <div id="content">
+            <div id="left">
+                <input  formControlName="image" type="text" style="margin-top: 100px;" placeholder="Enter Image Url"  >
+            </div>
+          
+            <div id="right">
+                <input formControlName="productName"  type="text"  placeholder="Enter product name"  >
+                <input formControlName="Material"style="width: 35%;" type="text" placeholder="Enter material">
+                <input style="width: 35%; visibility: hidden;" type="text">
+
+                <input formControlName="Color" style="width: 35%;" type="text" placeholder="Enter color"  >
+                <input  style="width: 35%; visibility: hidden;" type="text">
+
+                <input formControlName="Brand" style="width: 35%;" type="text" placeholder="Enter Brand"  >&nbsp;
+                <input formControlName="deliveryTime" style="width: 35%;" type="text" placeholder="Enter delivery time"  >
+
+                <input formControlName="minOrders"style="width: 35%;" type="text" placeholder="Enter min orders"  >&nbsp;
+                <input formControlName="productRating" style="width: 35%;" type="text" placeholder="Enter ratings" >
+
+                <input formControlName="location" style="width: 35%;" type="text" placeholder="Enter location" >&nbsp;
+             
+                <input formControlName="productPrice" style="width: 35%;" type="text" placeholder="Enter price"  >
+
+                <div>
+                    <button  class="btn" type="submit">Update</button>
+                </div>
+            </div>
+        
+          </div>
+         
+        </form>
+            
+        </div>
+        
+      </div>
+    </div>
+
+
+  </div>
+  <div class="center-column" *ngIf="productList" >
+    <ul *ngFor="let item of productList | paginate: { itemsPerPage: 5, currentPage: p }">
+        <li class="items-list">
+            <a ><img class="product-image" src="{{item.image}}" alt="icon"  /></a>
+        <div class="righttxt">
+
+            <div style="display: flex;">
+                <div  style="width: 70%;font-size: 20px;">{{item.productName}}</div>
+                <div *ngIf="hideRemove" style="width: 30%;" ><a  (click)="removeproduct(item)" >Remove Product</a></div>
+            </div>
+    
+            <div style="display: flex;">
+                <div class="kmtext" style="width: 40%;">{{item.attributes.Material}}</div>
+                <div class="kmtext" style="width: 30%;"></div>
+                <div class="nav-item"  style="width: 30%;" ><a href="#"><img  src="../../../assets/heart-icon.png">&nbsp;&nbsp;Add to favorite</a></div>
+            </div>
+            <div style="display: flex;">
+                <div class="kmtext" style="width: 40%;">{{item.attributes.Color}}</div>
+                <div class="kmtext" style="width: 30%;"></div>
+                <div class="nav-item"  style="width: 30%;" ><a href="#"><img src="../../../assets/compare-icon.png">&nbsp;&nbsp;Add to compare</a></div>
+            </div>
+            <div style="display: flex;">
+                <div class="kmtext" style="width: 40%;">{{item.attributes.Brand}}</div>
+                <div class="kmtext" style="width: 30%;"><a href="#"><img src="../../../assets/mdi_truck-delivery.png">&nbsp;&nbsp;{{item.deliveryTime}}</a></div>
+                <div class="nav-item"  style="width: 30%;" ><a href="#"><img src="../../../assets/add-to-compare-icon.png">&nbsp;&nbsp;Shortlist product</a></div>
+            </div>
+            <div style="display: flex;">
+                <div class="kmtext" style="width: 40%;">{{item.minOrders}} pieces min order</div>
+                <div class="kmtext" style="width: 30%;"><a href="#"><img src="../../../assets/star.png">
+                    <img src="../../../assets/star.png">
+                   <img src="../../../assets/star.png">
+                   <img src="../../../assets/star.png">
+                   <img src="../../../assets/star.png"></a>
+                </div>
+                <div class="nav-item"  style="width: 30%;" ><a href="#"><img src="../../../assets/add-to-cart-icon.png">&nbsp;&nbsp;Add to cart</a></div>
+            </div>
+            <div style="display: flex;">
+                <div class="kmtext" style="width: 40%;"><a href="#"><img style="width: 10px;" src="../../../assets/location.png"></a>&nbsp;&nbsp;{{item.location}}</div>
+                <div class="kmtext" style="width: 30%;">{{item.productPrice}}</div>
+                <div class="nav-item"  style="width: 30%;" ><a href="#"><img src="../../../assets/asking-question.png">&nbsp;&nbsp;Contact seller</a></div>
+            </div>
+   
+        </div>
+      
+        </li>
+  
+        </ul>
+        <div style="text-align:center">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+       
+        <br><br>
+  </div>
+  <div class="right-column" >
+    <button class="btn active" id="myBtn" >Add Product</button>
+    <button class="btn " (click)="remove()">Remove Product</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
